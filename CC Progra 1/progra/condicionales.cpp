@@ -14,10 +14,11 @@ conjunto de sentencias de codigo que se ejecutan de manera secuencial delimitada
 solo pueden ser verdaderas o falsas (<, >, <=, >=, =, ==, !=).
 
 -simples:una sola comparacion
--compuestas:conjunto de comparaciones(solo puedo comparar 2 variables a la vez)
-TIPOS:
-if else o else if-si es verdadero se ejecuta una sentencia de lo contrario la otra sentencia (if else para una, si son varias else if) else if es usado 
+    if else o else if-si es verdadero se ejecuta una sentencia de lo contrario la otra sentencia (if else para una, si son varias else if) else if es usado 
 cuando se trabaja con rangos
+-compuestas:conjunto de comparaciones(solo puedo comparar 2 variables a la vez)
+
+tenemos el && y el ||
 
 IMPORTANTE
 ->  x=y asignacion
@@ -51,6 +52,8 @@ int main()
     else 
         cout<<"Bloque 4"<<endl;
     //fin del Bloque de codigo
+    
+    cout<<"Segunda forma de condicional"<<endl;
     
     return 0;
 }
