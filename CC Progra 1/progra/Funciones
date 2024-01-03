@@ -1,0 +1,32 @@
+//Claudia Coello
+//Funciones
+//Realizar un programa de un sistema bancario para calcular los tipos de interes para un usuario
+
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <math>//usar raiz cuadrada etc
+
+using namespace std;
+
+int main()
+{
+    //Pra los calculos de interes simple y compuesto
+    //capital o monto
+    //tanto
+    //tiempo
+    //interesCompuesto=monto(1+tanto)^tiempo
+    double monto=0, tanto=0, interesFinalSimple=0,interesFinalCompuesto=0;
+    int tiempo=0;
+    cout<<"Bienvenido al sistema bancario de creditos"<<endl;
+    cout<<"Por favor ingrese la cantidad que desea ingresar"<<endl;
+    cin>>monto;
+    cout<<"Por favor ingrese la cantidad de tiempo en el que desea pagar"<<endl;
+    cin>>tiempo;
+    cout<<"Por favor ingrese la tasa de interes que desea pagar"<<endl;
+    cin>>tanto;
+    //pow(base,exponente) potencia
+    interesFinalSimple=monto*tanto*tiempo;
+    interesFinalCompuesto=monto*pow((1+tanto),tiempo);
+    return 0;
+}
