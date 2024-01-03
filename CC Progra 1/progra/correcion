@@ -1,0 +1,146 @@
+/******************************************************************************
+Correcion prueba 2
+
+*******************************************************************************/
+
+#include <iostream>
+#include <string>
+#include <stdio.h>
+using namespace std;
+
+int main()
+{
+    char idCuenta,cuentaAhorros='a',cuentaCorriente='c',cuentaCredito='C', opcCuenta;
+    double saldoAhorros=0, saldoCorriente=0, saldoCredito=0, montoRetiro, montoDeposito;
+    int opcCuentas=0, tipoOperacion=0;
+    cout<<"Digite para crear:\n1 cuenta de ahorros \n2 para crear una cuenta ahorros y corriente \n3 crear cuenta ahorros, corriente y creditos"<<endl;
+    cin>>opcCuentas;
+    
+    while(opcCuentas>=1 && opcCuentas<=3){
+        if(opcCuentas==1){
+            opcCuenta='u';
+        }
+        if(opcCuentas==2){
+            opcCuenta='d';
+        }
+        if(opcCuentas==3){
+            opcCuenta='t';
+        }
+        switch(opcCuenta){
+            case 'u':
+                
+                do{
+                    cout<<"Digite el saldo de la cuenta de ahorros:"<<endl;
+                    cin>>saldoAhorros;
+                }while(saldoAhorros<0);
+                
+                break;
+            case 'd':
+                do{
+                    cout<<"Digite el saldo de la cuenta de ahorros:"<<endl;
+                    cin>>saldoAhorros;
+                }while(saldoAhorros<0);
+                
+                do{
+                    cout<<"Digite el saldo de la cuenta corriente:"<<endl;
+                    cin>>saldoCorriente;
+                }while(saldoCorriente<0);
+                
+                break;
+            case 't':
+                do{
+                    cout<<"Digite el saldo de la cuenta de ahorros:"<<endl;
+                    cin>>saldoAhorros;
+                }while(saldoAhorros<0);
+                
+                do{
+                    cout<<"Digite el saldo de la cuenta corriente:"<<endl;
+                    cin>>saldoCorriente;
+                }while(saldoCorriente<0);
+                
+                cout<<"Digite el saldo de la cuenta de credito:"<<endl;
+                cin>>saldoCredito;
+                break;
+            default:
+                cout<<"Ingreso una opcion invalida"<<endl;
+                break;
+        }
+        
+        cout<<"Ingrese 1 para realizar un retiro"<<endl<<"Ingrese 2 para realizar un deposito"<<endl;
+        cin>>tipoOperacion;
+        if(tipoOperacion==1){
+            cout<<"A que cuenta desea hacer el retiro"<<endl;
+            
+            cout<<"Digite a para cuenta ahorros, c para cuenta corriente, C para cuenta credito"<<endl;
+            cin>>idCuenta;
+            switch(idCuenta){
+                case 'a':
+                    do{
+                        cout<<"Cuanto desea retirar de su cuenta de ahorros "<<endl;
+                        cin>>montoRetiro;
+                    }while(montoRetiro<0 || montoRetiro>saldoAhorros);
+                    saldoAhorros=saldoAhorros-montoRetiro;
+                    cout<<"Su sueldo ahora es: "<<saldoAhorros<<endl;
+                    break;
+                
+                case 'c':
+                    do{
+                        cout<<"Cuanto desea retirar de su cuenta corriente "<<endl;
+                        cin>>montoRetiro;
+                    }while(montoRetiro<0 || montoRetiro>saldoCorriente);
+                    saldoCorriente=saldoCorriente-montoRetiro;
+                    cout<<"Su sueldo ahora es: "<<saldoCorriente<<endl;
+                    break;
+                    
+                case 'C':
+                    do{
+                        cout<<"Cuanto desea retirar de su cuenta credito "<<endl;
+                        cin>>montoRetiro;
+                    }while(montoRetiro<0 );
+                    saldoCredito=saldoCredito-montoRetiro;
+                    cout<<"Su sueldo ahora es: "<<saldoCredito<<endl;
+                    break;
+            }
+        }
+        
+        if(tipoOperacion==2){
+            cout<<"A que cuenta desea hacer el deposito"<<endl;
+            
+            cout<<"Digite a para cuenta ahorros, c para cuenta corriente, C para cuenta credito"<<endl;
+            cin>>idCuenta;
+            switch(idCuenta){
+                case 'a':
+                    do{
+                        cout<<"Cuanto desea depositar de su cuenta de ahorros "<<endl;
+                        cin>>montoDeposito;
+                    }while(montoDeposito<0);
+                    saldoAhorros=saldoAhorros+montoDeposito;
+                    cout<<"Su sueldo ahora es: "<<saldoAhorros<<endl;
+                    break;
+                
+                case 'c':
+                    do{
+                        cout<<"Cuanto desea depositar de su cuenta corriente "<<endl;
+                        cin>>montoRetiro;
+                    }while(montoDeposito<0);
+                    saldoCorriente=saldoCorriente+montoDeposito;
+                    cout<<"Su sueldo ahora es: "<<saldoCorriente<<endl;
+                    break;
+                    
+                case 'C':
+                    do{
+                        cout<<"Cuanto desea depositar de su cuenta credito "<<endl;
+                        cin>>montoRetiro;
+                    }while(montoDeposito<0 );
+                    saldoCredito=saldoCredito+montoDeposito;
+                    cout<<"Su sueldo ahora es: "<<saldoCredito<<endl;
+                    break;
+            }
+        }
+        
+        cout<<"Digite un numero mayor a tres para SALIR del programa"<<endl;
+        cin>>opcCuentas;
+    }
+    cout<<"El numero que digito no es el correcto"<<endl<<"Gracias por usar nuestro programa"<<endl;
+    return 0;
+}
