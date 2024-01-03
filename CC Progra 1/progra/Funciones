@@ -5,9 +5,11 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
-#include <math>//usar raiz cuadrada etc
+#include <cmath>//usar raiz cuadrada etc
 
 using namespace std;
+
+void imprimirTablaAmortizacion(double, double, int);
 
 int main()
 {
@@ -25,8 +27,38 @@ int main()
     cin>>tiempo;
     cout<<"Por favor ingrese la tasa de interes que desea pagar"<<endl;
     cin>>tanto;
+
     //pow(base,exponente) potencia
     interesFinalSimple=monto*tanto*tiempo;
-    interesFinalCompuesto=monto*pow((1+tanto),tiempo);
+    interesFinalCompuesto=monto*pow((1+tanto),tiempo)-monto;
+
+    imprimirTablaAmortizacion(monto, interesFinalSimple, tiempo);
+    cout<<"El calculo interes compuesto es "<<endl;
+    imprimirTablaAmortizacion(monto, interesFinalCompuesto, tiempo);
+    
     return 0;
 }
+void imprimirTablaAmortizacion(double monto, double interesFinalSimple, int tiempo){
+    int numeroMeses;
+    int interesMensual;
+    numeroMeses=tiempo*12;
+    interesMensual=interesFinalSimple/numeroMeses;
+    for (int i = 0; i < numeroMeses; i++)
+    {
+        cout<<i<<" .-el valor mensual a pagar es "<<interesMensual<<" para el monto de "<<monto<<endl;
+    }
+    
+}
+//Deber necesitamos desarrollar un sistema para una escuela enfocado en los niños de primer grado en donde se realizara:
+/*calculo areas: cuadrado, rectangulo y un triangulo
+perimetro: cuadrado, rectangulo y un triangulo
+factores de un numero
+determinar un numero mayor 
+detrminar un numero menor 
+para las dos primeras el usuario debe digitar dependiendo la figura los datos necesarios(triangulo base altura)
+para las siguientes tres al usuario se le solicita 2 numeros los cyales se calcula los factores, el mayor y el menor
+todo esto en un menu switch y mediante funciones, las tres primeras no retornan nada solo imprimen el valor del area y el perimetro
+la cuarta y la quinta deben retornar un numero entero que sera usado en el main para ser impreso 
+puede ser en un bucle
+
+*/
