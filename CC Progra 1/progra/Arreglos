@@ -1,0 +1,45 @@
+/******************************************************************************
+
+Arreglos:Es una agrupacion de datos homogenes que me permite agrupar datos de un mismo tipo.
+Este tiene un tamaño determinado, las posiciones dentro de este se empiezan desde 0.
+Tienen 3 elementos a definir: Tamaño(bumero de elementos que se puede guardar), posicion(lugar 
+donde se encuentra almacenado el elemento, recuerde que inicia en 0),valor(dato almacenado).
+
+*******************************************************************************/
+#include <iostream>
+#include <string>
+#include <stdio.h>
+#include <cmath>
+#include <stdlib.h>//Esta libreria me permite usar el randomizador
+using namespace std;
+//funcion para imprimir arreglos
+void imprimirArreglos(int arregloUno[], int tamano);
+//Funcion para rellenar el arrglo con numeros aleatorios
+int llenarArregloNumRan(int arregloUno[], int tamano);
+int main()
+{
+    int arregloUno[5]={2,3,4,5,6}, resultado;
+    cout<<arregloUno[4]<<endl;//si se escribe solo arreglo, sin definir la posicion, imprime el espacio de memoria
+    cin>>arregloUno[0];//guardo en la posicion 0
+    cout<<"Puedo cambiar el valor de un posicion con un cin "<<arregloUno[0]<<endl;
+    resultado=arregloUno[0]+arregloUno[1]+arregloUno[2];
+    cout<<"Puedo hacer operaciones con los valores de las posiciones "<<resultado<<endl;
+    
+    
+    
+    cout<<endl<<"Puedo cambiar el valor dentro del arreglo con un numero random "<<llenarArregloNumRan(arregloUno, 5)<<endl;
+    
+    cout<<"Tambien puedo usar un for para imprimir las posiciones dentro del arreglo {";
+    imprimirArreglos(arregloUno, 5);
+    cout << "}" << endl;
+    return 0;
+}
+void imprimirArreglos(int arregloUno[], int tamano){
+    for(int posicion=0; posicion<tamano; posicion++)
+        cout<<arregloUno[posicion]<<" ";
+}
+int llenarArregloNumRan(int arregloUno[], int tamano){
+    for(int posicion=0; posicion<tamano; posicion++)
+        arregloUno[posicion]=rand()%50;//genero un numero random del 0 al 50, este numero depende del tiempo
+    return arregloUno[5];
+}
