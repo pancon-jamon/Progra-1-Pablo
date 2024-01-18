@@ -16,14 +16,15 @@ using namespace std;
 void imprimirArreglos(int arregloUno[], int tamano);
 //Funcion para rellenar el arrglo con numeros aleatorios
 int llenarArregloNumRan(int arregloUno[], int tamano);
+int* llenarArregloNuevo(int tamano);
 int main()
 {
-    int arregloUno[5]={2,3,4,5,6}, resultado, tam1;
+    int arregloUno[5]={2,3,4,5,6}, resultado, tam1, *dir;
     
     tam1=sizeof(arregloUno)/sizeof(arregloUno[0]);//me permite conocer el tamaño del arreglo
     cout<<"El arreglo original es ";
     imprimirArreglos(arregloUno, tam1);
-    
+    dir= llenarArregloNuevo(tam1);
     cout<<"El elemento que se encuentra en la posicion 4 es "<<arregloUno[4]<<endl<<"Puedo cambiar el valor de un posicion con un cin ";//si se escribe solo arreglo, sin definir la posicion, imprime el espacio de memoria
     cin>>arregloUno[0];//guardo en la posicion 0
     
@@ -31,20 +32,39 @@ int main()
     imprimirArreglos(arregloUno, tam1);
     
     resultado=arregloUno[0]+arregloUno[1]+arregloUno[2];
-    cout<<"Puedo hacer operaciones con los valores del arreglo "<<resultado<<endl;
+    cout<<"Puedo hacer operaciones con los valores del arreglo, la suma de los elementos 0, 1 y 2 es "<<resultado<<endl;
     
     
     cout<<endl<<"Puedo cambiar el valor dentro del arreglo con un numero random y usar un for para imprimir las posiciones dentro del arreglo"<<endl;
     llenarArregloNumRan(arregloUno, tam1);
     imprimirArreglos(arregloUno, tam1);
+    
+    imprimirArreglos(dir, tam1);//llama a imprimirArreglos con la direccion de memoria
     return 0;
 }
+/*
+    Esta funcion imprime el arreglo
+    Necesita el arrglo y el tamaño
+*/
 void imprimirArreglos(int arregloUno[], int tamano){
+    cout<<"{ ";
     for(int posicion=0; posicion<tamano; posicion++)
         cout<<arregloUno[posicion]<<" ";
+    cout << "}" << endl;
 }
 int llenarArregloNumRan(int arregloUno[], int tamano){
     for(int posicion=0; posicion<tamano; posicion++)
         arregloUno[posicion]=rand()%50;//genero un numero random del 0 al 50, este numero depende del tiempo
     return arregloUno[5];
+}
+/*
+    Retorna un puntero a un arreglo lleno de manera aleatorio
+    Necesita el tamaño
+*/
+int* llenarArregloNuevo(int tamano){//no puedo retornar un arreglo pero si su direccion de memoria
+    int* dirArreglo=new int[tamano];//crea un espacio de tamano especifico
+    for(int posicion=0;posicion<tamano;posicion++)
+        dirArreglo[posicion]=rand() % 50;//apunta al valor que se encuentra en la posicion del for
+    return dirArreglo;
+    
 }
