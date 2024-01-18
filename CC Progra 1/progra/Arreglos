@@ -18,20 +18,25 @@ void imprimirArreglos(int arregloUno[], int tamano);
 int llenarArregloNumRan(int arregloUno[], int tamano);
 int main()
 {
-    int arregloUno[5]={2,3,4,5,6}, resultado;
-    cout<<arregloUno[4]<<endl;//si se escribe solo arreglo, sin definir la posicion, imprime el espacio de memoria
+    int arregloUno[5]={2,3,4,5,6}, resultado, tam1;
+    
+    tam1=sizeof(arregloUno)/sizeof(arregloUno[0]);//me permite conocer el tamaño del arreglo
+    cout<<"El arreglo original es ";
+    imprimirArreglos(arregloUno, tam1);
+    
+    cout<<"El elemento que se encuentra en la posicion 4 es "<<arregloUno[4]<<endl<<"Puedo cambiar el valor de un posicion con un cin ";//si se escribe solo arreglo, sin definir la posicion, imprime el espacio de memoria
     cin>>arregloUno[0];//guardo en la posicion 0
-    cout<<"Puedo cambiar el valor de un posicion con un cin "<<arregloUno[0]<<endl;
+    
+    cout<<"El elemento cambiado fue el de la posicion 0 "<<endl;
+    imprimirArreglos(arregloUno, tam1);
+    
     resultado=arregloUno[0]+arregloUno[1]+arregloUno[2];
-    cout<<"Puedo hacer operaciones con los valores de las posiciones "<<resultado<<endl;
+    cout<<"Puedo hacer operaciones con los valores del arreglo "<<resultado<<endl;
     
     
-    
-    cout<<endl<<"Puedo cambiar el valor dentro del arreglo con un numero random "<<llenarArregloNumRan(arregloUno, 5)<<endl;
-    
-    cout<<"Tambien puedo usar un for para imprimir las posiciones dentro del arreglo {";
-    imprimirArreglos(arregloUno, 5);
-    cout << "}" << endl;
+    cout<<endl<<"Puedo cambiar el valor dentro del arreglo con un numero random y usar un for para imprimir las posiciones dentro del arreglo"<<endl;
+    llenarArregloNumRan(arregloUno, tam1);
+    imprimirArreglos(arregloUno, tam1);
     return 0;
 }
 void imprimirArreglos(int arregloUno[], int tamano){
