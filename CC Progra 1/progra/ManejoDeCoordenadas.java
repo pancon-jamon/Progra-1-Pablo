@@ -7,6 +7,7 @@ public class Main{
 		// Parte def de variables
 		double coordenaX, coordenaY, distanciPunOri, direccionAngulo, cantidadADesplazarX, cantidadADesplazarY; 
 		double coordenaXDos, coordenaYDos, distanciPunOriDos, direccionAnguloDos; 
+		double coordenaXTres, coordenaYTres, distanciPunOriTres, direccionAnguloTres; 
 		int cuadrantePunto; 
 		int cuadrantePuntoDos;
 		int opcDesplazamiento;
@@ -61,6 +62,7 @@ public class Main{
 
                 // Debes asignar los nuevos valores de coordenadas después de desplazar
                 coordanadasDesplazadas(coordenaX, coordenaY, cantidadADesplazarX, cantidadADesplazarY);
+                
                 break;
 
             case 2:
@@ -81,8 +83,26 @@ public class Main{
                 System.out.println("Opcion no valida ");
                 break;
         }
+		imprimirCoordenadasPolares(coordenaX, coordenaY);
+		imprimirCoordenadasPolares(coordenaXDos, coordenaYDos);
+		//La funcion al retornar true cuando el primero es mayor al segundo, el segundo es el menor, si es falso el primero es el mayor
+		if(determinarModuloMenor(coordenaX, coordenaY, coordenaXDos, coordenaYDos)){
+		    System.out.println("El punto mas cercano al punto de origen es el segundo");
+		}else{
+		     System.out.println("El punto mas cercano al punto de origen es el primero");
+		}
 		
+		System.out.println("Ingrese la coordena en X para el tercer lado");
+		coordenaXTres = Double.parseDouble(ingresoDatos.nextLine());
 		
+		System.out.println("Ingrese la coordena en Y para el tercer lado");
+		coordenaYTres = Double.parseDouble(ingresoDatos.nextLine());
+		
+		if(determinarFormacionTriangulo(coordenaX, coordenaY, coordenaXDos, coordenaYDos, coordenaXTres, coordenaYTres)){
+		    System.out.println("Se puede formar un triangulo");
+		}else{
+		    System.out.println("No se puede formar un r¿triangulo");
+		}
 	}
 	
 	/**
@@ -106,7 +126,7 @@ public class Main{
 		 * @param: coordenaX representa la distancia desde el origen hasta el valor en X
 		 * @param: coordenaY  representa la distancia desde el origen hasta el valor en Y
 		 * @return: retorna la direccion del angulo
-		 * @description: Esta es una funcion me permite calcular la direccion del angulo al punto
+		 * @description: Esta es una funcion me permite calcular la direccion del angulo al punto (angulo)
 	*/
 	public static double determinarDireccionPunto (double coordenaX, double coordenaY){
 		double angulo; 
@@ -129,7 +149,6 @@ public class Main{
 		return anguloTrans; 
 	}
 	
-
 	/**
 		 * @autor : Pablo
 		 * @param: coordenaX representa la distancia desde el origen hasta el valor en X
@@ -157,7 +176,6 @@ public class Main{
 
     return numero;
 }
-
 	
     /**
     	 * Esta es una funcion imprime el mensaje para saber en que cuadrante se encuentra y su angulo. 
@@ -217,5 +235,50 @@ public class Main{
         
         System.out.println("La nueva coordenada en x es " + coordenadaDesplazadaX);
         System.out.println("La nueva coordenada en y es " + coordenadaDesplazadaY);
+    }
+    
+    /** 
+    	 * Esta es una funcion para imprimir las coordenadas polares de un punto
+    	 * @autor : Claudia Coello
+    	 * @param: coordenaX representa la distancia desde el origen hasta el valor en X
+    	 * @param: coordenaY  representa la distancia desde el origen hasta el valor en Y
+     */
+     public static void imprimirCoordenadasPolares(double coordenaX, double coordenaY){
+        double radio = calcularModulo(coordenaX, coordenaY);
+        double angulo = determinarDireccionPunto(coordenaX, coordenaY);
+        System.out.println("Las coordenadas polares son: Radio " + radio + " Angulo: " + angulo);
+     }
+    /** 
+    	 * Esta es una funcion para determinar el punto mas cercano al punto de origen, el modulo de menor valor
+    	 * @autor : Claudia Coello
+    	 * @param: coordenaX representa la distancia desde el origen hasta el valor en X
+    	 * @param: coordenaY  representa la distancia desde el origen hasta el valor en Y
+    	 * @param: coordenaXDos representa la distancia desde el origen hasta el segundo valor en X
+    	 * @param: coordenaYDos  representa la distancia desde el origen hasta el segundo valor en Y
+    	 * @return: true si el modulo del primer punto es menor al segundo, false si el segundo es mayor al primero
+     */
+    public static boolean determinarModuloMenor(double coordenaX, double coordenaY, double coordenadaXDos, double coordenadaYDos){
+        if( (calcularModulo(coordenaX, coordenaY)) > (calcularModulo(coordenadaXDos, coordenadaYDos)) )
+            return true;
+        return false;
+    }
+    
+    /** 
+    	 * Esta es una funcion para determinar si dados tres puntos se puede formar un triangulo
+    	 * @autor : Claudia Coello
+    	 * @param: coordenaX representa la distancia desde el origen hasta el valor en X
+    	 * @param: coordenaY  representa la distancia desde el origen hasta el valor en Y
+    	 * @param: coordenaXDos representa la distancia desde el origen hasta el segundo valor en X
+    	 * @param: coordenaYDos  representa la distancia desde el origen hasta el segundo valor en Y
+    	 * @param: coordenaXTres representa la distancia desde el origen hasta el tercer valor en X
+    	 * @param: coordenaYTres  representa la distancia desde el origen hasta el tercer valor en Y
+    	 * @return: true si se puede formar un triangulo, false si no
+     */
+    public static boolean determinarFormacionTriangulo(double coordenaX, double coordenaY, double coordenadaXDos, double coordenadaYDos, double coordenadaXTres, double coordenadaYTres) {
+        double ladoAB = distanciaPuntos(coordenaX, coordenaY, coordenadaXDos, coordenadaYDos);
+        double ladoBC = distanciaPuntos(coordenadaXDos, coordenadaYDos, coordenadaXTres, coordenadaYTres);
+        double ladoAC = distanciaPuntos(coordenaX, coordenaY, coordenadaXTres, coordenadaYTres);
+    
+        return (ladoAB + ladoBC > ladoAC) && (ladoAB + ladoAC > ladoBC) && (ladoAC + ladoBC > ladoAB);
     }
 }
