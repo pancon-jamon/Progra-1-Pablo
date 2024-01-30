@@ -3,10 +3,6 @@
  * 
  */
 public class ArregloUnidimensionalesEjem {
-/*
-Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y retorne la suma de todos los elementos
-
-*/
 	public static void main(String[] args) {
 	    //arreglo lleno de randomicos del 11-400****
 		double[] arregloDoble = new double[20];
@@ -32,7 +28,12 @@ Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y re
         sumaArreglos = sumarArreglosEnteros(arregloIntUno, arregloIntDos);
         imprimirArregloEnt(sumaArreglos);
         //*********************
-        
+        //Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y retorne la suma de todos los elementos**************************
+        int[] arregloEntero = new int[10];
+        arregloEntero = llenarArregloEnt(arregloEntero.length);
+       imprimirArregloEnt(arregloEntero);
+        System.out.println( sumarElemEnt(arregloEntero));
+        //**************************************
         //Cuarto: Crear una funcion que reciba el tamaño de un arreglo y retorne 
         //un arreglo de tipo caracter, este tendra un tamaño de 100
         //y los caracteres se generaran de manera aleatoria***********************
@@ -41,12 +42,26 @@ Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y re
         imprimirArregloChar(arregloChar);
         //**********************************
 	}
-	
+	/**
+	 * Esta funcion me sumara todos los elementos de un arreglo de numeros enteros
+	 * @param arregloEntero es un arreglo de enteros
+	 * @return un entero
+	 */
+	public static int sumarElemEnt(int[] arregloEntero) {
+		// TODO Auto-generated method stub
+		int suma = 0;                                                                                                       
+		for(int i = 0; i < arregloEntero.length; i++) {
+			suma += suma;
+			suma = arregloEntero[i];
+		}
+		return suma;
+	}
+
 	/**
 	 * Esta funcion imprime los valores de un arreglo de tipo entero
 	 * @param arregloEnt: Es un arreglo de tipo entero
 	 */
-	private static void imprimirArregloEnt(int[] arregloEnt) {
+	public static void imprimirArregloEnt(int[] arregloEnt) {
 		System.out.print("{");
 		for(int i = 0 ; i < arregloEnt.length ; i++) {
 			System.out.print(arregloEnt[i] + " , ");
@@ -128,7 +143,7 @@ Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y re
 	}
 	
 	/**
-	 * Esta funcion me sumara dos arrglos de numeros enteros
+	 * Esta funcion me sumara dos arreglos de numeros enteros
 	 * @param arregloEntUno es un arreglo de enteros
 	 * @param arregloEntDos es un arreglo de enteros
 	 * @return un arreglo de enteros
