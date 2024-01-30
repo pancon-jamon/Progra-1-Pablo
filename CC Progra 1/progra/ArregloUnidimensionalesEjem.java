@@ -39,7 +39,6 @@ Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y re
         char[] arregloChar = new char[100];
         arregloChar = llenarArreglosChar(arregloChar.length);
         imprimirArregloChar(arregloChar);
-        char caracter = 0;//Si un numero esta del 97 al 122 y se imprime son letras del abecedario
         //**********************************
 	}
 	
@@ -149,11 +148,10 @@ Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y re
 	 * @return Un arreglo de tipo char
 	 */
 	 public static char[] llenarArreglosChar(int sizeArreglo){
-	     int caracter = 0;
 	     char[] arreglo = new char[sizeArreglo];
 	     
 	     for(int i=0; i<sizeArreglo; i++ ){
-	         arreglo[i] = (char)((Math.random() * 26) + 97);
+	         arreglo[i] = (char)((Math.random() * 94) + 33);
 	     }
 	     return arreglo;
 	 }
