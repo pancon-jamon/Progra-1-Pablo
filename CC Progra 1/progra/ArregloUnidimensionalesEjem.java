@@ -4,7 +4,7 @@
  */
 public class ArregloUnidimensionalesEjem {
 /*
-Tercero crear una funcion que reciba un entero de parametro y retorne la suma de todos los elementos
+Tercero crear una funcion que reciba un arreglo de tipo entero de parametro y retorne la suma de todos los elementos
 
 */
 	public static void main(String[] args) {
