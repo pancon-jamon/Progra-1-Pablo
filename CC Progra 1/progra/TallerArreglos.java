@@ -9,39 +9,59 @@ public class TallerArreglos {
 		int size = 7;
 		Scanner ingresoDatos = new Scanner(System.in);
 		String productoIngresado;
+		int modificarStock = 0;
 		
 		String[] producto = new String[size];
 		int[] stock = new int[size];
 		double[] precio = new double[size];
-		boolean[] descuento = new boolean[size];
+		String[] descuento = new String[size];
 		
 		producto = new String[]{"P1" , "P2" , "P3", "P4" , "P5" , "P6", "P7"};
 		stock = new int[] {52, 30 , 15, 12, 18, 26, 35};
 		precio = new double[] {0.9, 1.95, 2.23,3.14, 16.7, 3, 2.24};
-		descuento = new boolean[] {true, true, true, false, false, false, true};
+		descuento = new String[] {"si", "si", "si", "no", "no", "no", "si"};
 		
 		calcularPrecioTotal(stock, precio);
-		System.out.println();
 		mostrarProductoMasStock(determinarProductoMasStock(stock), producto);
 		//Retiro producto
-		System.out.print("Ingrese el nombre del producto que desea retirar ");
-		productoIngresado = ingresoDatos.nextLine();
+		do{
+		    System.out.println("Desea modificar el stock? Ingrese 1 si desea retirarlo, Ingrese 2 si desea aumentarlo, Ingrese 3 si no lo desea");
+		    modificarStock = Integer. parseInt(ingresoDatos.nextLine());
+		}while(modificarStock<0);
 		
-		System.out.print("Cuanto desea retirar ");
-		int cantProducto = Integer.parseInt(ingresoDatos.nextLine());
-		int cantProductoAumento = cantProducto * -1;
-		stock = determinarNuevoStock(stock, cantProductoAumento, productoIngresado);
+		switch(modificarStock){
+		    case 1:
+		        //Quitar producto
+        		System.out.print("Ingrese el nombre del producto que desea retirar ");
+        		productoIngresado = ingresoDatos.nextLine();
+        		
+        		System.out.print("Cuanto desea retirar ");
+        		int cantProducto = Integer.parseInt(ingresoDatos.nextLine());
+        		int cantProductoAumento = cantProducto * -1;
+        		stock = determinarNuevoStock(stock, cantProductoAumento, productoIngresado);
+        		
+		        break;
+		    case 2:
+		        
+        		//Aumentar Producto
+        		System.out.print("Ingrese el nombre del producto que desea aumentar ");
+        		productoIngresado = ingresoDatos.nextLine();
+        		
+        		System.out.print("Cuanto desea aumentar ");
+        		cantProducto = Integer.parseInt(ingresoDatos.nextLine());
+        		cantProductoAumento = cantProducto;
+        		stock = determinarNuevoStock(stock, cantProductoAumento, productoIngresado);
+		        break;
+		    case 3:
+		        break;
+		    default:
+		        System.out.println("Opcion no valida");
+		      
+		}
 		
-		//Aumento Producto
-		System.out.print("Ingrese el nombre del producto que desea aumentar ");
-		productoIngresado = ingresoDatos.nextLine();
-		
-		System.out.print("Cuanto desea aumentar ");
-		cantProducto = Integer.parseInt(ingresoDatos.nextLine());
-		cantProductoAumento = cantProducto;
-		stock = determinarNuevoStock(stock, cantProductoAumento, productoIngresado);
 		
 		//mostrarArregloEnt(stock);
+		determinarImprimirPrecioConDescuento(descuento ,precio, stock);
 		
 	}
 	public static void mostrarArregloEnt(int[] arreglo) {
@@ -143,4 +163,42 @@ public class TallerArreglos {
 		}
 		return nuevoSock;
 	}
+	
+	/**
+	 * Esta funcion es para determinar si una funccion tiene descuento
+	 * @author Claudia Coello
+	 * @param descuento es un arreglo de booleanos
+	 * @return un arreglo de booleanos
+	 */
+	 public static boolean[] determinarDescuento(String[] descuento){
+	     
+	     boolean[] arregloDescuento = new boolean[descuento.length];
+	     for(int cont=0; cont<descuento.length; cont++){
+	         arregloDescuento[cont] = ("si".equals(descuento[cont]) );
+	            
+	     }
+        return arregloDescuento;
+    }
+    /**
+     * Esta funcion es para realizar el descuentoBandera, del 10%
+     * @author Claudia Coello
+     * @param descuento es un arreglo de strings
+     * @param precios es un arreglo de doubles
+     * @param stock es un arreglo de enteros
+     * @return arregloPrecioDescuento es un arreglo de doubles
+     */
+    public static void determinarImprimirPrecioConDescuento(String[] descuento, double[] precios, int[] stock){
+        boolean[] arregloDescuento = new boolean[precios.length];
+        double[] arregloPrecioDescuento = new double[precios.length];
+        arregloDescuento = determinarDescuento(descuento);
+        
+        for(int cont=0; cont<precios.length; cont++){
+            if(arregloDescuento[cont] == true){
+                System.out.print("El producto: P" + (cont+1) +" tiene descuento, su precio es de: ");
+                arregloPrecioDescuento[cont] = (precios[cont]/10) * stock[cont];
+                System.out.print(arregloPrecioDescuento[cont] + ". ");
+                System.out.println("");
+            }
+        }
+    }
 }
