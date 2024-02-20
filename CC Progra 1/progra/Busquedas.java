@@ -7,8 +7,11 @@
 */
 /*
  * Esta es un clase que me permite 
+ * @author Claudia Coello
+ * @version 1.0
  */
-
+//Hasta el domingo correccion del taller completo y 
+/*Aumentar una fucinon para encontrar un palabra de busqueda secuencial(con .toEquals) y una binaria  */
 import java.util.Scanner;
 
 public class Busquedas
@@ -17,35 +20,36 @@ public class Busquedas
         Scanner sc = new Scanner(System.in);
 		int[] arrSecuencial = {1,2,3,7,4,7,8};
         int[] arrBinario = {4,2,5,7,7,8,3};
+        int pivote =(int) arrBinario.length/2;
+        int datoBusqueda;
 
         //En la busqueda se admite como respuesta un no encontrado, esta respuesta 
         //normalmente se representa como -1 para indicar que no existe el elemento en 
         //una pocision determinada en un gurpo de datos
-        int datoBusqueda;
+        
         System.out.println("Que dato desea encontrar de manera secuencial");
         datoBusqueda = Integer.parseInt(sc.nextLine());
-        buscarSecuencial(arrSecuencial, datoBusqueda);
+        busqueda(arrSecuencial, datoBusqueda);
 
         System.out.println("Que dato desea encontrar de manera binaria");
         datoBusqueda = Integer.parseInt(sc.nextLine());
-        busquedaBinaria(arrBinario, datoBusqueda);
+        busqueda(arrBinario, datoBusqueda, pivote);
 	}
     /*
-     * Esta funcion es para busqueda binaria
+     * Esta funcion es para una busqueda binaria
      * @author: Claudia Coello
      * @param arrBinario
      * @param datoBusqueda
      */
-    private static void busquedaBinaria(int[] arrBinario, int datoBusqueda) {
-        
-        int pivote = (int)(arrBinario.length/2);
+    private static void busqueda(int[] arrBinario, int datoBusqueda, int pivote) {
+
         if(arrBinario[pivote] == datoBusqueda)
-            System.out.println("dato encontrado en pos " + pivote);
+            System.out.println("Dato encontrado en pos " + pivote);
         if(arrBinario[pivote] > datoBusqueda)//Buscamos a la izquierda de manera secuencial
-            buscarSecuencial(arrBinario, datoBusqueda);
+            busqueda(arrBinario, datoBusqueda);
         
         else//Buscamos a la derecha de manera secuencial
-            buscarSecuencial(arrBinario, datoBusqueda);
+            busqueda(arrBinario, datoBusqueda);
         
     }
     /*
@@ -54,7 +58,7 @@ public class Busquedas
      * @param arrSequencial
      * @param datoBusqueda
      */
-    private static void buscarSecuencial (int[] arrSecuencial, int datoBusqueda){//Agregar el pivote para sobrecargarlo y un caracter
+    private static void busqueda (int[] arrSecuencial, int datoBusqueda){//Agregar el pivote para sobrecargarlo y un caracter
         int bandera = -1;
         for (int pos = 0; pos<arrSecuencial.length; pos++) {
             if(arrSecuencial[pos] == datoBusqueda){
@@ -63,8 +67,8 @@ public class Busquedas
             }
                
         }
-        if(bandera == -1){
+        if(bandera == -1)
             System.out.println("Dato no encontrado " + bandera);
-        }
+        
     }
 }
