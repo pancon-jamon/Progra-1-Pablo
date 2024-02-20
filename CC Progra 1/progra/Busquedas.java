@@ -35,6 +35,8 @@ public class Busquedas
         datoBusqueda = Integer.parseInt(sc.nextLine());
         busqueda(arrBinario, datoBusqueda, pivote);
 	}
+    /*Esta funcion es para ordenar */
+    
     /*
      * Esta funcion es para una busqueda binaria
      * @author: Claudia Coello
