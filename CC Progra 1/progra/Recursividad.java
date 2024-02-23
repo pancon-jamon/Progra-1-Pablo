@@ -17,9 +17,13 @@ public class Recursividad {
 		//System.out.println(factorial(num));
 		
 		//imprimirNombreRecursividad(num);
-		
-		
-		System.out.println(calcularSumaNumPosiPar(num));
+		int [] arreglo = {1, 2, 3};
+		//conseguirNumArreglo(arreglo, 0);
+		invertirNumsArreglo(arreglo, 0, arreglo.length-1);
+		//System.out.println(calcularSumaNumPosiPar(num));
+		for (int i = 0; i < arreglo.length; i++) {
+            System.out.print(arreglo[i] + " "); // Imprimir cada elemento del arreglo
+        }
 	}
 
 	/**
@@ -77,7 +81,29 @@ public class Recursividad {
 		return 0;//Debe ser 0 porque se sumaria con el otro return 
 		
 	}
-//Para el viernes 
+
   /*Programe un metodo recursivo que le invierta los numeros de un arreglo de enteros*/
+  
+  /**
+   * Esta funcion es para conseguir los elementos de un arreglo de enteros
+   * @param arreglo es un arreglo de enteros
+   * @param contInicial es un entero
+   * @return un entero
+   * */
+   //necesito una funcion para sacar los elementos del arreglo
+    
+    
+    public static void invertirNumsArreglo(int[] arreglo, int contInicial, int contFinal) {
+        if (contInicial < contFinal) {
+            
+            int temp = arreglo[contInicial];
+            arreglo[contInicial] = arreglo[contFinal];
+            arreglo[contFinal] = temp;
+            
+            invertirNumsArreglo(arreglo, contInicial + 1, contFinal - 1);
+            
+        }
+        
+    }
 
 }
